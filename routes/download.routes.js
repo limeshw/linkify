@@ -1,10 +1,12 @@
 import { Router } from "express";
 import { File } from "../models/files.model.js";
-import { fileURLToPath } from 'url';
-import path from "path";
+import cloudinary from "../config/cloudinary.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// import { fileURLToPath } from 'url';
+// import path from "path";
+
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
 
 const router = Router()
@@ -16,8 +18,10 @@ router.route("/:uuid").get(async(req,res) => {
         if(!file) return res.render('download', { error: 'Link has been expired.'});
 
         // const filePath = `${__dirname}/../${file.path}`;
-        const filePath = path.join(__dirname, '..', file.path);
-        res.download(filePath);
+        // const filePath = path.join(__dirname, '..', file.path);
+        // res.download(filePath);
+
+        res.redirect(file.path); // Cloudinary URL
 
     } catch (error) {
         res.render("download" , {error : "Something went wrong."});
