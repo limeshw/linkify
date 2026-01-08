@@ -50,6 +50,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //routes
+app.get("/test" , (req,res) => {
+  return res.send("hello");
+})
 app.use("/api/files" , fileRoute)
 app.use("/files" , showFile)
 app.use("/files/download" , downloadFile)
