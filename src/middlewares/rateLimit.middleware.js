@@ -17,6 +17,12 @@ export const uploadRateLimiter = rateLimit({
   max: env.uploadRateLimitMax,
 });
 
+export const viewRateLimiter = rateLimit({
+  ...baseConfig,
+  windowMs: 60 * 60 * 1000,
+  max: Number(process.env.VIEW_RATE_LIMIT_MAX || 300),
+});
+
 export const shareRateLimiter = rateLimit({
   ...baseConfig,
   windowMs: 60 * 60 * 1000,

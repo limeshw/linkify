@@ -5,12 +5,12 @@ import {
   fileInfo,
   showFilePage,
 } from "../controllers/view.controller.js";
-import { shareRateLimiter } from "../middlewares/rateLimit.middleware.js";
+import { viewRateLimiter } from "../middlewares/rateLimit.middleware.js";
 
 const router = Router();
 
-router.get("/meta/:uuid", shareRateLimiter, fileInfo);
-router.get("/download/:uuid", shareRateLimiter, downloadFile);
-router.get("/:uuid", shareRateLimiter, showFilePage);
+router.get("/meta/:uuid", viewRateLimiter, fileInfo);
+router.get("/download/:uuid", viewRateLimiter, downloadFile);
+router.get("/:uuid", viewRateLimiter, showFilePage);
 
 export default router;
